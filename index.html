@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공학용 계산기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        #display {
+            width: calc(100% - 20px);
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            outline: none;
+            text-align: right;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .button {
+            flex: 1;
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .button.operator {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>공학용 계산기</h1>
+        <input type="text" id="display" readonly>
+        <div class="row">
+            <button class="button operator" onclick="clearDisplay()">C</button>
+            <button class="button" onclick="appendInput('7')">7</button>
+            <button class="button" onclick="appendInput('8')">8</button>
+            <button class="button" onclick="appendInput('9')">9</button>
+            <button class="button operator" onclick="appendInput('/')">/</button>
+        </div>
+        <div class="row">
+            <button class="button" onclick="appendInput('4')">4</button>
+            <button class="button" onclick="appendInput('5')">5</button>
+            <button class="button" onclick="appendInput('6')">6</button>
+            <button class="button operator" onclick="appendInput('*')">*</button>
+        </div>
+        <div class="row">
+            <button class="button" onclick="appendInput('1')">1</button>
+            <button class="button" onclick="appendInput('2')">2</button>
+            <button class="button" onclick="appendInput('3')">3</button>
+            <button class="button operator" onclick="appendInput('-')">-</button>
+        </div>
+        <div class="row">
+            <button class="button" onclick="appendInput('0')">0</button>
+            <button class="button" onclick="appendInput('.')">.</button>
+            <button class="button operator" onclick="calculate()">=</button>
+            <button class="button operator" onclick="appendInput('+')">+</button>
+        </div>
+    </div>
+
+    <script>
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function appendInput(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function calculate() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
